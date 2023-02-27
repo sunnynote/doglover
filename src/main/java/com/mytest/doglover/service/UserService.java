@@ -42,6 +42,12 @@ import java.util.Optional;
   }
 
   @Transactional
+  public void update(User user, String nickname){
+    user.update(nickname);
+    userRepository.save(user);
+  }
+
+  @Transactional
   public Optional<User> findByEmail(String email){
     return userRepository.findByEmail(email);
   }

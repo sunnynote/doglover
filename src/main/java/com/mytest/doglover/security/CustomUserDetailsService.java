@@ -3,7 +3,6 @@ package com.mytest.doglover.security;
 import com.mytest.doglover.model.user.UserAccount;
 import com.mytest.doglover.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
