@@ -48,6 +48,11 @@ import java.util.Optional;
   }
 
   @Transactional
+  public void delete(User user){
+    userRepository.delete(user);
+  }
+
+  @Transactional
   public Optional<User> findByEmail(String email){
     return userRepository.findByEmail(email);
   }

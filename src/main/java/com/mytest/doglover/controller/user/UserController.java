@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -52,7 +49,6 @@ public class UserController {
     return ResponseEntity.ok().body(updatePageResponse);
   }
 
-
   @PostMapping("/user/me")
   public ResponseEntity<User> updateMe(@AuthenticationPrincipal UserAccount userAccount,
                                        @RequestBody UserUpdateRequest userUpdateRequest){
@@ -61,6 +57,15 @@ public class UserController {
             .orElseThrow(()-> new UsernameNotFoundException("존재하지 않는 회원입니다."));
 
     userService.update(user, userUpdateRequest.getNickname());
+
     return ResponseEntity.ok().body(user);
+  }
+
+  @DeleteMapping("/user")
+  public void delete(@AuthenticationPrincipal UserAccount userAccount){
+    User user = userService.findByEmail(userAccount.getUsername())
+            .orElseThrow(()-> new UsernameNotFoundException("존재하지 않는 회원입니다."));
+
+    userService.delete(user);
   }
 }
