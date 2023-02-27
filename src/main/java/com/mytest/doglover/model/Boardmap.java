@@ -1,5 +1,6 @@
 package com.mytest.doglover.model;
 
+import com.mytest.doglover.model.user.User;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -21,6 +22,6 @@ public class Boardmap extends  BaseTimeEntity{
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private User user;
 
-  @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "boardmap", cascade = CascadeType.ALL)
   private List<Board> boards = new ArrayList<>();
 }

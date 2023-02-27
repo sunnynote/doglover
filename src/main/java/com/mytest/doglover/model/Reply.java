@@ -1,12 +1,13 @@
 package com.mytest.doglover.model;
 
+import com.mytest.doglover.model.user.User;
 import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-public class Reply extends BaseTimeEntity{
+public class Reply extends BaseTimeEntity {
 
   @Id
   @GeneratedValue
