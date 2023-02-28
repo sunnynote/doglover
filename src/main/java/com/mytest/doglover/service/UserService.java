@@ -9,14 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-  @Service
-  public class UserService {
+@Service
+public class UserService {
 
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    private final PasswordEncoder passwordEncoder;
+  private final PasswordEncoder passwordEncoder;
 
-    private final JwtTokenProvider jwtTokenProvider;
+  private final JwtTokenProvider jwtTokenProvider;
 
   public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider){
     this.userRepository = userRepository;
