@@ -20,10 +20,10 @@ public class Boardmap extends BaseTimeEntity {
   private String title;
 
   @JoinColumn(name = "USER_NO")
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY)
   private User user;
 
-  @OneToMany(mappedBy = "boardmap", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "boardmap")
   private List<Board> boards = new ArrayList<>();
 
   public Boardmap() {}

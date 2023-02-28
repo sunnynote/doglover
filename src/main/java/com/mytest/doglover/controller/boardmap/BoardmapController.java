@@ -1,5 +1,6 @@
 package com.mytest.doglover.controller.boardmap;
 
+import com.mytest.doglover.model.Boardmap;
 import com.mytest.doglover.model.user.User;
 import com.mytest.doglover.model.user.UserAccount;
 import com.mytest.doglover.service.BoardmapService;
@@ -7,10 +8,7 @@ import com.mytest.doglover.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,6 +27,14 @@ public class BoardmapController {
     return boardmapService.create(boardmapRequest
             .newBoardmap(user, boardmapRequest.getTitle()))
             .getId();
+  }
+
+  @DeleteMapping("/{boardmapId}")
+  public void delete(@PathVariable("boardmapId") Long boardmapId){
+    Boardmap boardmap = boardmapService.findById(boardmapId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시판 입니다"));
+
+    boardmapService.delete(boardmap);
   }
 
 }
