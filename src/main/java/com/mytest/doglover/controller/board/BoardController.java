@@ -45,4 +45,14 @@ public class BoardController {
 
     return ResponseEntity.ok(collect);
   }
+
+  @GetMapping("/{boardmapId}/{boardId}")
+  public ResponseEntity<BoardResponse> board(@PathVariable("boardId") Long boardId){
+    Board board = boardService.findById(boardId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시물입니다."));
+
+    BoardResponse boardResponse = new BoardResponse(board);
+
+    return ResponseEntity.ok().body(boardResponse);
+  }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BoardService {
@@ -20,6 +21,11 @@ public class BoardService {
   @Transactional
   public Board write(Board board){
     return boardRespository.save(board);
+  }
+
+  @Transactional
+  public Optional<Board> findById(Long id){
+    return boardRespository.findById(id);
   }
 
   @Transactional
