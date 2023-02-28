@@ -1,10 +1,15 @@
 package com.mytest.doglover.controller.board;
 
+import com.mytest.doglover.model.Board;
 import com.mytest.doglover.model.Boardmap;
 import com.mytest.doglover.service.BoardService;
 import com.mytest.doglover.service.BoardmapService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,4 +31,18 @@ public class BoardController {
             .getId();
   }
 
+  @GetMapping("/{boardmapId}")
+  public ResponseEntity<List<BoardResponse>> boards(@PathVariable("boardmapId") Long boardmapId){
+
+    Boardmap boardmap = boardmapService.findById(boardmapId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시판입니다."));
+
+    List<Board> boardList = boardService.findAllByBoardmap(boardmap);
+
+    List<BoardResponse> collect = boardList.stream()
+            .map(BoardResponse::new)
+            .collect(Collectors.toList());
+
+    return ResponseEntity.ok(collect);
+  }
 }
