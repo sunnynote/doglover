@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-public class Board extends BaseTimeEntity  {
+public class Board extends BaseTimeEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
