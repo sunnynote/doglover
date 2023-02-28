@@ -6,9 +6,13 @@ import com.mytest.doglover.model.user.UserAccount;
 import com.mytest.doglover.service.BoardmapService;
 import com.mytest.doglover.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,4 +41,14 @@ public class BoardmapController {
     boardmapService.delete(boardmap);
   }
 
+  @GetMapping("")
+  public ResponseEntity<List<BoardmapResponse>> boardmaps(){
+    List<Boardmap> boardmapList = boardmapService.findAll();
+
+    List<BoardmapResponse> collect = boardmapList.stream()
+            .map(BoardmapResponse::new)
+            .collect(Collectors.toList());
+
+    return ResponseEntity.ok(collect);
+  }
 }

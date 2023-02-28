@@ -5,6 +5,7 @@ import com.mytest.doglover.repository.BoardmapRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,10 @@ public class BoardmapService {
   @Transactional
   public Optional<Boardmap> findById(Long id){
     return boardmapRepository.findById(id);
+  }
+
+  @Transactional
+  public List<Boardmap> findAll(){
+    return boardmapRepository.findAll();
   }
 }
