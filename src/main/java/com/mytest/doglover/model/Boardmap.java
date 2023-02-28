@@ -33,4 +33,8 @@ public class Boardmap extends BaseTimeEntity {
     this.user = user;
     this.title = title;
   }
+
+  public void update(String title){
+    this.title = title;
+  }
 }

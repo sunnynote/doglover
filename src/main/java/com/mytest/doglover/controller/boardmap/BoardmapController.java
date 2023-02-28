@@ -33,6 +33,16 @@ public class BoardmapController {
             .getId();
   }
 
+  @PostMapping("/{boardmapId}")
+  public Long update(@RequestBody BoardmapRequest boardmapRequest,
+                     @PathVariable("boardmapId") Long boardmapId){
+    Boardmap boardmap = boardmapService.findById(boardmapId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시판입니다"));
+
+    return boardmapService.update(boardmap, boardmapRequest.getTitle());
+  }
+
+
   @DeleteMapping("/{boardmapId}")
   public void delete(@PathVariable("boardmapId") Long boardmapId){
     Boardmap boardmap = boardmapService.findById(boardmapId)

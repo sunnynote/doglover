@@ -23,6 +23,12 @@ public class BoardmapService {
   }
 
   @Transactional
+  public Long update(Boardmap boardmap, String title){
+    boardmap.update(title);
+    return boardmapRepository.save(boardmap).getId();
+  }
+
+  @Transactional
   public void delete(Boardmap boardmap){
     boardmapRepository.delete(boardmap);
   }
