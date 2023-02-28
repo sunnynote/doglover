@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReplyService {
@@ -24,5 +25,15 @@ public class ReplyService {
   @Transactional
   public List<Reply> findAllByBoard(Board board){
     return replyRepository.findAllByBoard(board);
+  }
+
+  @Transactional
+  public Optional<Reply> findById(Long id){
+    return replyRepository.findById(id);
+  }
+
+  @Transactional
+  public void delete(Reply reply){
+    replyRepository.delete(reply);
   }
 }

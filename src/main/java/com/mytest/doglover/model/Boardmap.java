@@ -23,7 +23,7 @@ public class Boardmap extends BaseTimeEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   private User user;
 
-  @OneToMany(mappedBy = "boardmap")
+  @OneToMany(mappedBy = "boardmap", cascade = CascadeType.ALL)
   private List<Board> boards = new ArrayList<>();
 
   public Boardmap() {}

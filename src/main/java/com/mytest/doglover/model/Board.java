@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +25,9 @@ public class Board extends BaseTimeEntity {
   @JoinColumn(name = "BOARDMAP_NO")
   @ManyToOne(fetch = FetchType.LAZY)
   private Boardmap boardmap;
+
+  @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+  private List<Reply> replyList = new ArrayList<>();
 
   public Board() {}
 

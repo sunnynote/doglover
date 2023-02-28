@@ -18,11 +18,11 @@ public class Reply extends BaseTimeEntity {
   private String content;
 
   @JoinColumn(name = "USER_NO")
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY)
   private User user;
 
   @JoinColumn(name = "BOARD_NO")
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY)
   private Board board;
 
   public Reply() {}

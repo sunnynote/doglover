@@ -56,4 +56,13 @@ public class ReplyController {
 
     return ResponseEntity.ok(collect);
   }
+
+  @DeleteMapping("/{boardmapId}/{boardId}/reply/{replyId}")
+  public void delete(@PathVariable("replyId") Long replyId){
+
+    Reply reply = replyService.findById(replyId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글입니다."));
+
+    replyService.delete(reply);
+  }
 }

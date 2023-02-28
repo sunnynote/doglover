@@ -67,9 +67,11 @@ public class BoardController {
 
     return boardId;
   }
+
   @DeleteMapping("/{boardmapId}/{boardId}")
   public void delete(@PathVariable("boardId") Long boardId){
-   Board board = boardService.findById(boardId)
+
+    Board board = boardService.findById(boardId)
            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시물입니다."));
 
    boardService.delete(board);
