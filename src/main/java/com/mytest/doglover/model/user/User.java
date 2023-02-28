@@ -41,13 +41,17 @@ public class User implements UserDetails {
 
   public User() {}
 
+  public User(String email){
+    this.email = email;
+  }
+
   public User(String email, String password){
     this.email = email;
     this.password = password;
   }
 
   @Builder
-  public User(String email, String password, String nickname){
+  public User(Str성ing email, String password, String nickname){
     this.email = email;
     this.password = password;
     this.nickname = nickname;
