@@ -24,6 +24,12 @@ public class BoardService {
   }
 
   @Transactional
+  public Long update(Board board, String title, String content){
+    board.update(title, content);
+    return boardRespository.save(board).getId();
+  }
+
+  @Transactional
   public Optional<Board> findById(Long id){
     return boardRespository.findById(id);
   }

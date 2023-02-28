@@ -32,7 +32,7 @@ public class BoardController {
   }
 
   @GetMapping("/{boardmapId}")
-  public ResponseEntity<List<BoardResponse>> boards(@PathVariable("boardmapId") Long boardmapId){
+  public ResponseEntity<List<BoardResponse>> readAll(@PathVariable("boardmapId") Long boardmapId){
 
     Boardmap boardmap = boardmapService.findById(boardmapId)
             .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시판입니다."));
@@ -47,12 +47,24 @@ public class BoardController {
   }
 
   @GetMapping("/{boardmapId}/{boardId}")
-  public ResponseEntity<BoardResponse> board(@PathVariable("boardId") Long boardId){
+  public ResponseEntity<BoardResponse> readOne(@PathVariable("boardId") Long boardId){
     Board board = boardService.findById(boardId)
             .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시물입니다."));
 
     BoardResponse boardResponse = new BoardResponse(board);
 
     return ResponseEntity.ok().body(boardResponse);
+  }
+
+  @PostMapping("/{boardmapId}/{boardId}")
+  public Long update(@RequestBody BoardRequest boardRequest,
+                     @PathVariable("boardId") Long boardId){
+
+    Board board = boardService.findById(boardId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시물입니다."));
+
+    boardService.update(board, boardRequest.getTitle(), boardRequest.getContent());
+
+    return boardId;
   }
 }
