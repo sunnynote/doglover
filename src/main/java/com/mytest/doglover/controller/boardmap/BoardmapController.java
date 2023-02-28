@@ -42,7 +42,6 @@ public class BoardmapController {
     return boardmapService.update(boardmap, boardmapRequest.getTitle());
   }
 
-
   @DeleteMapping("/{boardmapId}")
   public void delete(@PathVariable("boardmapId") Long boardmapId){
     Boardmap boardmap = boardmapService.findById(boardmapId)

@@ -2,8 +2,9 @@ package com.mytest.doglover.service;
 
 import com.mytest.doglover.model.Board;
 import com.mytest.doglover.model.Boardmap;
+import com.mytest.doglover.model.Reply;
 import com.mytest.doglover.model.user.User;
-import com.mytest.doglover.repository.BoardRepository;
+import com.mytest.doglover.repository.ReplyRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,31 +18,30 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class BoardServiceTest {
+public class ReplyServiceTest {
 
   @Mock
-  BoardRepository boardRepository;
+  ReplyRepository replyRepository;
 
   @InjectMocks
-  BoardService boardService;
+  ReplyService replyService;
 
   @Test
-  @DisplayName("게시물 생성 테스트")
-  void board_write(){
+  @DisplayName("댓글 생성 테스트")
+  void reply_write(){
 
     // given
-    Board mockBoard = Board.builder()
-            .boardmap(new Boardmap(new User("sunny"), "boardmap title"))
-            .title("board title")
-            .content("board content")
+    Reply mockReply = Reply.builder()
+            .board(new Board(new Boardmap(new User("sunny"), "boardmap"), "board title", "board content"))
+            .content("reply content")
             .build();
 
-    when(boardRepository.save(any())).thenReturn(mockBoard);
+    when(replyRepository.save(any())).thenReturn(mockReply);
 
     // when
-    Board board = boardService.write(mockBoard);
+    Reply reply = replyService.write(mockReply);
 
     // then
-    assertThat(board.getTitle(), is("board title"));
+    assertThat(reply.getContent(), is("reply content"));
   }
 }

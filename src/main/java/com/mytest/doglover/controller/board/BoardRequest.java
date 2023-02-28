@@ -12,5 +12,4 @@ public class BoardRequest {
   public Board newBoard(Boardmap boardmap, String title, String content){
     return new Board(boardmap, title, content);
   }
-
 }
