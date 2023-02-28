@@ -24,9 +24,8 @@ public class BoardService {
   }
 
   @Transactional
-  public Long update(Board board, String title, String content){
-    board.update(title, content);
-    return boardRespository.save(board).getId();
+  public List<Board> findAllByBoardmap(Boardmap boardmap){
+    return boardRespository.findAllByBoardmap(boardmap);
   }
 
   @Transactional
@@ -35,7 +34,13 @@ public class BoardService {
   }
 
   @Transactional
-  public List<Board> findAllByBoardmap(Boardmap boardmap){
-    return boardRespository.findAllByBoardmap(boardmap);
+  public Long update(Board board, String title, String content){
+    board.update(title, content);
+    return boardRespository.save(board).getId();
+  }
+
+  @Transactional
+  public void delete(Board board){
+    boardRespository.delete(board);
   }
 }
