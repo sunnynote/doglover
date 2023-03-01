@@ -7,15 +7,19 @@ import com.mytest.doglover.model.user.UserAccount;
 import com.mytest.doglover.service.BoardService;
 import com.mytest.doglover.service.ReplyService;
 import com.mytest.doglover.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Api(tags = {"Reply API : 댓글"})
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/boardmap")
@@ -26,7 +30,8 @@ public class ReplyController {
   private final UserService userService;
 
   @PostMapping("/{boardmapId}/{boardId}/write")
-  public Long write(@AuthenticationPrincipal UserAccount userAccount,
+  @ApiOperation(value = "댓글 작성", notes = "해당 게시물에 댓글을 작성한다.")
+  public Long write(@ApiIgnore @AuthenticationPrincipal UserAccount userAccount,
                     @PathVariable("boardId") Long boardId,
                     @RequestBody ReplyRequest replyRequest){
 
@@ -43,6 +48,7 @@ public class ReplyController {
   }
 
   @GetMapping("/{boardmapId}/{boardId}/reply")
+  @ApiOperation(value = "해당 게시물의 전체 댓글 조회", notes = "해당 게시물에 작성된 전체 댓글을 조회한다.")
   public ResponseEntity<List<ReplyResponse>> read(@PathVariable("boardId") Long boardId){
 
     Board board = boardService.findById(boardId)
@@ -58,6 +64,7 @@ public class ReplyController {
   }
 
   @DeleteMapping("/{boardmapId}/{boardId}/reply/{replyId}")
+  @ApiOperation(value = "댓글 삭제", notes = "해당 댓글을 삭제한다.")
   public void delete(@PathVariable("replyId") Long replyId){
 
     Reply reply = replyService.findById(replyId)
