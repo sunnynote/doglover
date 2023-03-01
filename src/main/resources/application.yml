@@ -16,6 +16,7 @@ spring:
       data-locations: classpath:data.sql
       mode: always
 
+
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -24,6 +25,9 @@ spring:
         format_sql: true
     defer-datasource-initialization: true
     show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 logging:
   level:
