@@ -1,9 +1,15 @@
 package com.mytest.doglover.controller.user;
 
-import com.mytest.doglover.model.user.User;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(value = "REQ: 로그인 시 필요한 정보")
 public class LoginRequest {
+
+  @ApiModelProperty(value = "이메일", required = true)
   private String email;
+
+  @ApiModelProperty(value = "비밀번호", required = true)
   private String password;
 
   public String getEmail() {
@@ -13,8 +19,4 @@ public class LoginRequest {
   public String getPassword() {
     return password;
   }
-
-//  public User newLogin(User user){
-//    return new User(user.getEmail(), user.getPassword());
-//  }
 }

@@ -1,6 +1,8 @@
 package com.mytest.doglover.model;
 
 import com.mytest.doglover.model.user.User;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -8,15 +10,18 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@ApiModel(value = "MODEL: Boardmap")
 @Entity
 @Getter
 public class Boardmap extends BaseTimeEntity {
 
+  @ApiModelProperty(value = "게시판 번호")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "BOARDMAP_NO")
   private Long id;
 
+  @ApiModelProperty(value = "게시판 제목", required = true)
   private String title;
 
   @JoinColumn(name = "USER_NO")

@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
     return new Docket(DocumentationType.SWAGGER_2)
             .select()
             .paths(PathSelectors.any())
-            .apis(RequestHandlerSelectors.basePackage("com.mytest.doglover"))
+            .apis(RequestHandlerSelectors.basePackage("com.mytest.doglover.controller"))
             .build()
             .apiInfo(apiInfo())
             .useDefaultResponseMessages(false);
