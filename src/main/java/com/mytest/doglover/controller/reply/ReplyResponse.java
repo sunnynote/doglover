@@ -14,6 +14,7 @@ public class ReplyResponse {
   public ReplyResponse(Reply reply){
     replyId = reply.getId();
     content = reply.getContent();
-    nickname = reply.getBoard().getBoardmap().getUser().getNickname();
+//    nickname = reply.getBoard().getBoardmap().getUser().getNickname();
+    nickname = reply.getUser().getNickname();
   }
 }
